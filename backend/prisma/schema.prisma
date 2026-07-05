@@ -1,0 +1,72 @@
+// Imageify Prisma Schema
+// Database: Neon PostgreSQL
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  // Neon requires a direct URL for migrations (non-pooled connection)
+  directUrl = env("DIRECT_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum TransactionStatus {
+  PENDING
+  SUCCESS
+  FAILED
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  credits   Int      @default(10) // Every new user receives 10 free credits
+  role      Role     @default(USER)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  images       Image[]
+  transactions Transaction[]
+
+  @@map("users")
+}
+
+model Image {
+  id          String   @id @default(uuid())
+  userId      String   @map("user_id")
+  prompt      String
+  imageUrl    String   @map("image_url") @db.Text
+  style       String
+  aspectRatio String   @map("aspect_ratio")
+  isFavorite  Boolean  @default(false) @map("is_favorite")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("images")
+}
+
+model Transaction {
+  id           String            @id @default(uuid())
+  userId       String            @map("user_id")
+  orderId      String            @unique @map("order_id")
+  paymentId    String?           @map("payment_id")
+  amount       Int // stored in paise (INR) or smallest currency unit
+  creditsAdded Int               @map("credits_added")
+  status       TransactionStatus @default(PENDING)
+  createdAt    DateTime          @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("transactions")
+}
