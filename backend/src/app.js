@@ -42,6 +42,10 @@ app.use(
 app.get('/health', (req, res) =>
   res.json({ success: true, message: 'VisionCraft AI API is running 🚀' })
 );
+// ─── Health check ───────────────────────────────────────
+app.get('/', (req, res) =>
+  res.json({ success: true, message: 'Welcome to VisionCraft AI API' })
+);
 
 // ─── API routes ─────────────────────────────────────────
 app.use('/api', routes);
