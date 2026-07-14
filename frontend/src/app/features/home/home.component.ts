@@ -82,7 +82,43 @@ import { AuthService } from '../../core/services/auth.service';
               <div class="mb-4 grid h-12 w-12 place-items-center rounded-xl border border-white/[0.06]"
                    [style.background]="f.iconBg"
                    [style.color]="f.iconColor">
-                <div [innerHTML]="f.icon"></div>
+               @if (f.icon === 'style') {
+<svg viewBox="0 0 24 24"
+     class="h-6 w-6"
+     fill="none"
+     stroke="currentColor"
+     stroke-width="2"
+     stroke-linecap="round"
+     stroke-linejoin="round">
+  <path d="M4 16l4-5 3 3 4-6 5 8"/>
+</svg>
+}
+
+@if (f.icon === 'gallery') {
+<svg viewBox="0 0 24 24"
+     class="h-6 w-6"
+     fill="none"
+     stroke="currentColor"
+     stroke-width="2"
+     stroke-linecap="round"
+     stroke-linejoin="round">
+  <rect x="3" y="3" width="18" height="18" rx="2"/>
+  <path d="M3 15l5-5 4 4 3-3 6 6"/>
+</svg>
+}
+
+@if (f.icon === 'credits') {
+<svg viewBox="0 0 24 24"
+     class="h-6 w-6"
+     fill="none"
+     stroke="currentColor"
+     stroke-width="2"
+     stroke-linecap="round"
+     stroke-linejoin="round">
+  <circle cx="12" cy="12" r="9"/>
+  <path d="M12 7v10M9 10h6"/>
+</svg>
+}
               </div>
               <h3 class="font-display text-lg font-bold text-white">{{ f.title }}</h3>
               <p class="mt-2 text-sm text-slate-400">{{ f.body }}</p>
@@ -130,29 +166,28 @@ export class HomeComponent {
     {
       title: 'Four distinct styles',
       body: 'Realistic, anime, digital art, or sketch — each tuned with its own prompt recipe.',
-      icon: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 16l4-5 3 3 4-6 5 8" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-      iconBg: 'rgba(232, 82, 122, 0.08)',
-      iconColor: '#FF7A93',
-      glowBg: 'radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(232, 82, 122, 0.04), transparent 40%)',
+      icon: 'style',
+      iconBg: 'rgba(232,82,122,.08)',
+      iconColor: '#ceb9bd',
+      glowBg: 'radial-gradient(600px circle at var(--mouse-x,50%) var(--mouse-y,50%), rgba(232,82,122,.04), transparent 40%)',
     },
     {
       title: 'Your gallery, saved',
       body: 'Every image is stored with its prompt so you can search, favorite, and download anytime.',
-      icon: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 3-3 6 6" stroke-linecap="round"/></svg>',
-      iconBg: 'rgba(240, 160, 48, 0.08)',
+      icon: 'gallery',
+      iconBg: 'rgba(240,160,48,.08)',
       iconColor: '#FFC842',
-      glowBg: 'radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(240, 160, 48, 0.04), transparent 40%)',
+      glowBg: 'radial-gradient(600px circle at var(--mouse-x,50%) var(--mouse-y,50%), rgba(240,160,48,.04), transparent 40%)',
     },
     {
       title: 'Credits, not subscriptions',
       body: 'Pay once for a pack of credits. One credit per image. No recurring charges.',
-      icon: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9 10h6" stroke-linecap="round"/></svg>',
-      iconBg: 'rgba(167, 139, 250, 0.08)',
+      icon: 'credits',
+      iconBg: 'rgba(167,139,250,.08)',
       iconColor: '#C4B5FD',
-      glowBg: 'radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(167, 139, 250, 0.04), transparent 40%)',
+      glowBg: 'radial-gradient(600px circle at var(--mouse-x,50%) var(--mouse-y,50%), rgba(167,139,250,.04), transparent 40%)',
     },
   ];
-
   steps = [
     {
       n: 1,

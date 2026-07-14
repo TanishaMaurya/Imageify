@@ -15,14 +15,8 @@ import { ThemeService } from '../../core/services/theme.service';
 
         <!-- Brand -->
         <a routerLink="/" class="group flex items-center gap-2.5">
-          <span
-            class="relative grid h-8 w-8 place-items-center rounded-xl overflow-hidden"
-            style="background: linear-gradient(135deg, #E8527A 0%, #F0A030 100%); box-shadow: 0 0 20px -4px rgba(232, 82, 122, 0.5);">
-            <svg viewBox="0 0 24 24" class="h-4 w-4 text-white" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M4 16l4-5 3 3 4-6 5 8" stroke-linecap="round" stroke-linejoin="round" />
-              <circle cx="8" cy="7" r="1.4" fill="currentColor" stroke="none" />
-            </svg>
-          </span>
+         
+          <img src="/assets/logo.png" alt="Logo" class="h-8 w-8 rounded-xl">
           <span class="font-display text-lg font-extrabold tracking-tight text-white">VisionCraft AI</span>
         </a>
 
