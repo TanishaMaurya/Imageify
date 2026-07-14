@@ -17,7 +17,7 @@ const required = (key) => {
 export const env = {
   port: process.env.PORT || 5000,
   nodeEnv: process.env.NODE_ENV || 'development',
-  clientUrl: 'https://vision-craft-ai-tau.vercel.app' || process.env.CLIENT_URL,
+  clientUrl: 'https://vision-craft-ai-tau.vercel.app',
 
   jwtSecret: required('JWT_SECRET'),
   jwtExpiresIn: process.env.JWT_EXPIRES_IN || '7d',
